@@ -5,6 +5,8 @@ import FilmSerach from './search'
 import MovieCard from './movieCard'
 import Movies from './listMovie'
 import RatingSearch from './ratingSearch'
+import LoaderHOC from '../HOC/LoaderHOC'
+
 
 const theFilms = [
   {
@@ -188,4 +190,4 @@ addNewMovie(newMovie) {
   }
 }
 
-export default MovieApp;
+export default LoaderHOC(MovieApp);
