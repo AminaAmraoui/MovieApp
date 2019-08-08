@@ -1,9 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react'
 import './App.css';
 import MovieApp from './components/movieApp'
-const App = () => (
-  <div>
-    <MovieApp />
+
+
+class App extends Component{
+
+  constructor(props){
+    super(props);
+    this.state = {
+      isLoading : true
+    };
+  }
+
+
+  componentDidMount=() => {
+    setTimeout(()=>{
+      this.setState({ isLoading : !this.state.isLoading });
+    }, 500);
+  } 
+
+  render(){
+    return <div>
+    <MovieApp isLoading ={this.state.isLoading}/>
   </div>
-);
+  }
+}
+
+
+
 export default App;
