@@ -1,0 +1,20 @@
+.search {
+    display: flex;
+    justify-content: space-around;
+    width: 400px;
+    height: 40px;
+}
+input[type=button]{
+  background-color: #33C1FF; 
+  border: none;
+  color: white;
+  padding: 12px 28px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+input[type=text]{
+    width: 300px
+}

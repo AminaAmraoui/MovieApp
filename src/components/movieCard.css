@@ -1,0 +1,26 @@
+.movie {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: space-around;
+  width: 250px;
+  height: 300px;
+  border-radius: 25px;
+  background-color: lightblue;
+  color:white;
+  margin-right: 30px;
+  margin-bottom: 20px;
+  padding-top: 5px
+}
+.movie img {
+    width: 170px;
+    height: 250px
+  }
+  
+  .top-left {
+    position: absolute;
+    top: 18px;
+    right: 38px;
+  }

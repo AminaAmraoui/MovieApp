@@ -1,0 +1,11 @@
+.fa-star {
+    color: #33C1FF
+}
+.fa-star:hover{
+    cursor: pointer;
+}
+.rating{
+    display: flex;
+    width: 100px;
+    justify-content: space-around;
+}
