@@ -88,7 +88,16 @@ getNewInputs(event){
     [event.target.name]: event.target.value
   })
 }
-
+getNewImg(event){
+  var file = event.target.files[0]
+    let reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = () => {
+      this.setState({
+        newImg: reader.result
+      })
+    }
+}
 /****************** */
 
 /** Filtring list of movies  Method*/
@@ -162,10 +171,10 @@ addNewMovie(newMovie) {
                               <h2>Add New Movie</h2>
                               <input type="text" name="newTitle" placeholder="Film Title" onChange={(e)=>this.getNewInputs(e)}/>
                               <input type="text" name="newStars" placeholder="Film Rating" onChange={(e)=>this.getNewInputs(e)}/>
-                              <input type="text" name="newImg" placeholder="Film Img" onChange={(e)=>this.getNewInputs(e)}/>
+                              <input type="file" name="newImg" placeholder="Film Img" onChange={(e)=>this.getNewImg(e)}/>
                               
                               <div className="addmovie-btn">
-                                  <input type="button" value="Close" onClick={this.closeModal}/>
+                                  
                                   <input type="button" value="Add"
                                             onClick={()=>
                                               {this.closeModal();  /** call multiple functions on onClick event */
@@ -176,6 +185,7 @@ addNewMovie(newMovie) {
                                               img:this.state.newImg
                                           })}}
                                     />
+                                    <button type="button" value="Close" onClick={this.closeModal} className='btn btn-danger px-4'>Close</button>
                              </div>
                                                               
                               </div>
