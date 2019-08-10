@@ -1,5 +1,5 @@
 .list-movies{
-    margin:10px 190px 10px 100px; /*tp right bottom left*/
+    margin:10px 90px 10px 10px; /*tp right bottom left*/
     display: flex;
     flex-wrap: wrap;
 }
