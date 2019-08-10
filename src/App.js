@@ -13,6 +13,7 @@ class App extends Component{
   }
 
 
+  /**when mounting the App, isLoading changes to true */
   componentDidMount=() => {
     setTimeout(()=>{
       this.setState({ isLoading : !this.state.isLoading });
