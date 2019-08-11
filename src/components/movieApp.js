@@ -6,52 +6,9 @@ import MovieCard from './movieCard'
 import Movies from './listMovie'
 import RatingSearch from './ratingSearch'
 import LoaderHOC from '../HOC/LoaderHOC'
-
-
-const theFilms = [
-  {
-    id:'1',
-    img:'http://www.gstatic.com/tv/thumb/v22vodart/16815150/p16815150_v_v8_ac.jpg',
-    title:'The perfection',
-    stars:4
-  },
-  {
-    id:'2',
-    img:'https://i.pinimg.com/474x/7e/78/bf/7e78bfc0e0f907f0dc15003e9c537d73.jpg',
-    title:'The Lion King',
-    stars:5
-  },
-  {
-    id:'3',
-    img:'http://www.gstatic.com/tv/thumb/v22vodart/16169325/p16169325_v_v8_aa.jpg',
-    title:'Bird Box',
-    stars:3
-  },
-  {
-    id:'4',
-    img:'http://www.gstatic.com/tv/thumb/v22vodart/16169325/p16169325_v_v8_aa.jpg',
-    title:'Bird Box',
-    stars:3
-  },
-  {
-    id:'5',
-    img:'http://www.gstatic.com/tv/thumb/v22vodart/16169325/p16169325_v_v8_aa.jpg',
-    title:'Bird Box',
-    stars:3
-  }
-]
-
-const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
-  }
-};
-
+import {connect} from 'react-redux'
+import { addMovie } from '../actions/actionCreator'
+import {bindActionCreators} from 'redux'
 
 
 class MovieApp extends Component{
@@ -60,9 +17,6 @@ class MovieApp extends Component{
 constructor(props) {
   super(props)
   this.state = {
-    minRating: 1,
-    movies: theFilms,
-    titleSearch:'',
     /**states of modal */
     modalIsOpen: false,
     newTitle:'',
@@ -100,15 +54,6 @@ getNewImg(event){
 }
 /****************** */
 
-/** Filtring list of movies  Method*/
-getVisibleMovies() {
-  return this.state.movies.filter(
-    el =>
-      el.stars >= this.state.minRating &&
-      el.title.toLowerCase().includes(this.state.titleSearch.toLowerCase().trim())
-    )
-}
-
 /** Add a new Movie */
 addNewMovie(newMovie) {
   this.setState({
@@ -132,27 +77,15 @@ addNewMovie(newMovie) {
      {/** MovieApp receives from RatingSearch  (i+1 of Rating component) 
         and places it in rating variable*/}
       <div className="search-container">
-        <FilmSerach 
-          filmname={this.state.titleSearch}
-          onChange={(newtitleSearch) => {
-            this.setState({
-              titleSearch: newtitleSearch
-            })
-          }}/>
-        <RatingSearch 
-          stars={this.state.minRating}
-           onChange={(rating) => {
-            this.setState({
-              minRating: rating
-            })
-          }}/>
+        <FilmSerach />
+        <RatingSearch />
       </div>
 
        {/***** Display List of movies & add a movie******/}
 
        <div className="display-movies">
           <div className="list-movies">
-            <Movies movieList={this.getVisibleMovies()} />
+            <Movies />
           </div>
           <div className="add-movie">
             <MovieCard innerJSX={<input type="button" value="+" 
@@ -178,7 +111,7 @@ addNewMovie(newMovie) {
                                   <input type="button" value="Add"
                                             onClick={()=>
                                               {this.closeModal();  /** call multiple functions on onClick event */
-                                              this.addNewMovie({
+                                              this.props.addMovie({ /**call addMovie: a function from actionCreator */
                                               id: Math.random(),
                                               title: this.state.newTitle,
                                               stars: Number(this.state.newStars),
@@ -200,4 +133,10 @@ addNewMovie(newMovie) {
   }
 }
 
-export default LoaderHOC(MovieApp);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+      addMovie
+  }, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(LoaderHOC(MovieApp));

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import './App.css';
 import MovieApp from './components/movieApp'
+import {Provider} from 'react-redux'
+import store from './store'
 
 
 class App extends Component{
@@ -21,9 +23,9 @@ class App extends Component{
   } 
 
   render(){
-    return <div>
+    return <Provider store={store}>
     <MovieApp isLoading ={this.state.isLoading}/>
-  </div>
+  </Provider>
   }
 }
 

@@ -1,5 +1,7 @@
 import React from 'react'
 import './search.css'
+import {connect} from 'react-redux'
+
 
 /** FilmSerach component send, through onChange method, event.target.value */
 
@@ -13,8 +15,28 @@ const FilmSerach =({filmname ='', onChange = () => {}})=>{
             onChange={(event) => {
                 onChange(event.target.value)
             }}/>
-        <input type="button" value="Search"/>
     </div>
 }
 
-export default FilmSerach
+//mapDispatchToProps: from the props to the state of the store
+const mapDispatchToProps = dispatch => {
+    return {
+        onChange: (newTitle) => {
+            dispatch({
+                type: 'SET_TITLE_FILTER',
+                title: newTitle
+            })
+        }
+    }
+}
+
+//fill the props of the component with the state of the store
+const mapStateToProps = state => {
+    return {
+        filmname:state.titleFilter
+    }
+}
+//smart component
+const FilmSerachContainer = connect(mapStateToProps,mapDispatchToProps)(FilmSerach)
+
+export default FilmSerachContainer
