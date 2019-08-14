@@ -17,11 +17,10 @@ class MovieApp extends Component{
 constructor(props) {
   super(props)
   this.state = {
+    newTitle:'No Title',
+    newStars:1,
     /**states of modal */
-    modalIsOpen: false,
-    newTitle:'',
-    newStars:0,
-    newImg:''
+    modalIsOpen: false
 }
 
     this.openModal = this.openModal.bind(this);
@@ -54,12 +53,6 @@ getNewImg(event){
 }
 /****************** */
 
-/** Add a new Movie */
-addNewMovie(newMovie) {
-  this.setState({
-    movies: this.state.movies.concat(newMovie)
-  })
-}
 
 /****************** Render Method *********************/
 
@@ -92,7 +85,7 @@ addNewMovie(newMovie) {
                                         className="add-btn" 
                                         onClick={this.openModal}/>} 
                   
-                        film={{}}/>
+                        film={{img:'', title:''}}/>
 
                     <Modal
                               isOpen={this.state.modalIsOpen}

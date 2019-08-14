@@ -1,24 +1,57 @@
 import React from 'react'
 import './movieCard.css'
 import Rating from './rating'
+import {connect} from 'react-redux'
+import ModalFilm from './ModalFilm'
 
 const MovieCard =(props)=>{
-
-    let film=props.film
     
-    /* props.film===undefined && (film={title:'',img:'https://www.mearto.com/assets/no-image-83a2b680abc7af87cfff7777d0756fadb9f9aecd5ebda5d34f8139668e0fc842.png',
-                                stars:0}) */
+    const {film = {},
+    onDelete = () => {},
+    onEdit = () => {}} = props
+    const {
+        id,
+        title = 'No Title',
+        img = require('../img/noimg.png'),
+        stars,
+    } = film
    
    return <div className="movie">
         <div>
+        <div className={props.innerJSX ? "" : "overlay-container"} >
             <div className="top-left">
-                {film.stars && <Rating stars={film.stars}/>}               
+                {stars && <Rating stars={stars}/>}       
             </div>
             {props.innerJSX}
-            {film.img && <img src={film.img} alt={film.title}/>}
+            
+                    <img src={img} alt={title}/>
+                    <div className="overlay">
+                                <div className="text">
+                                    <button type="button" value="delete" onClick={() => onDelete(id)} className='btn btn-info'><i className="far fa-trash-alt"></i></button>
+                                    <ModalFilm innerFilm={film}/>
+                                </div>
+                    </div>
+            </div>
         </div>
-        <h2>{film.title}</h2>
+        <h2>{title}</h2>
     </div>
+
+    
+   
 }
 
-export default MovieCard
+const mapDispatchToProps = dispatch => {
+    return {
+        onDelete: (id) => {
+            dispatch({
+                type: 'DELETE_MOVIE',
+                id: id
+            })
+        }
+    }
+}
+
+const MovieCardContainer =
+    connect(null, mapDispatchToProps)(MovieCard)
+
+export default MovieCardContainer

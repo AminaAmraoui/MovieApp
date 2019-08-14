@@ -24,3 +24,30 @@
     top: 18px;
     right: 38px;
   }
+  /**************Overlay****************/
+.overlay-container{
+  position: relative;
+}
+.overlay {
+  position: absolute;
+  width: 100px;
+  height:100px;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #33C1FF;
+  top:0;
+  right:0
+}
+.overlay-container:hover .overlay {
+  opacity: 1;
+  cursor: pointer;
+}
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
