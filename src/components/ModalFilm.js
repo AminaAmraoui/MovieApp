@@ -83,7 +83,7 @@ getNewImg(event){
                                               {this.closeModal();  /** call multiple functions on onClick event */
                                               this.props.editMovie({ /**call editMovie: a function from actionCreator */
                                                 title: this.state.newTitle || this.props.innerFilm.title,
-                                                stars: Number(this.state.newStars)||Number(this.props.innerFilm.stars),
+                                                stars: Math.min(5,Number(this.state.newStars))||Number(this.props.innerFilm.stars),
                                                 img:this.state.newImg || this.props.innerFilm.img
                                           } ,this.props.innerFilm.id 
                                           )}}
