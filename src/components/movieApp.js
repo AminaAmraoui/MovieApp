@@ -107,7 +107,7 @@ getNewImg(event){
                                               this.props.addMovie({ /**call addMovie: a function from actionCreator */
                                               id: Math.random(),
                                               title: this.state.newTitle,
-                                              stars: Number(this.state.newStars),
+                                              stars: Math.min(5,Number(this.state.newStars)),
                                               img:this.state.newImg
                                           })}}
                                     />
