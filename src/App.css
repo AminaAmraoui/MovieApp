@@ -40,9 +40,7 @@ body{
 }
 
 /****** Display movies *******/
-.display-movies{
-  display: flex;
-}
+
 .add-btn{
   background-color: white !important; 
   color: #33C1FF !important;
@@ -70,4 +68,12 @@ body{
   display: flex;
   justify-content: space-around;
   width: 400px
+}
+.list-movies {
+  display: flex;
+}
+.list-movies-map {
+  display: flex;
+  flex-wrap: wrap;
+  width:900px
 }

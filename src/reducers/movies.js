@@ -7,6 +7,7 @@ const movies = (state = [], action) => {
         return state.concat(action.movie)
     }
     if(action.type === 'EDIT_MOVIE') {
+        console.log(action.movie)
         return state.map(m => {
             if(m.id === action.id) {
                 return action.movie
